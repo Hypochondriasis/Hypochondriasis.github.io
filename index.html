@@ -1,11 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pojeb sa</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pojeb sa</title>
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+    }
+
+    .bg-image {
+        /* The image used */
+        background-image: url("image1.jpg");
+
+        /* Full height */
+        height: 100%;
+
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        /* Set up the positioning for the arrows */
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .arrow {
+        cursor: pointer;
+        font-size: 24px;
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 10px;
+        margin: 10px;
+    }
+</style>
 </head>
 <body>
-    
+
+<div class="bg-image" id="bg-image">
+    <div class="arrow" onclick="changeImage(-1)">&#10094;</div>
+    <div class="arrow" onclick="changeImage(1)">&#10095;</div>
+</div>
+
+<script>
+    var images = ["image1.jpg", "image2.jpg", "image3.jpg"];
+    var currentImageIdx = 0;
+
+    function changeImage(direction) {
+        currentImageIdx += direction;
+
+        if (currentImageIdx < 0) {
+            currentImageIdx = images.length - 1;
+        } else if (currentImageIdx >= images.length) {
+            currentImageIdx = 0;
+        }
+
+        document.getElementById('bg-image').style.backgroundImage = "url('" + images[currentImageIdx] + "')";
+    }
+</script>
+
 </body>
 </html>
