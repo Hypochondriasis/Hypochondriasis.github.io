@@ -45,6 +45,8 @@
     <div class="arrow" onclick="changeImage(1)">&#10095;</div>
 </div>
 
+<audio id="mySound" src="sound.mp3"></audio>
+
 <script>
     var images = ["image1.jpg", "image2.jpg", "image3.jpg"];
     var currentImageIdx = 0;
@@ -60,6 +62,12 @@
 
         document.getElementById('bg-image').style.backgroundImage = "url('" + images[currentImageIdx] + "')";
     }
+
+    // Play sound after 1 second
+    setTimeout(function() {
+        var sound = document.getElementById("mySound");
+        sound.play();
+    }, 1000);
 </script>
 
 </body>
