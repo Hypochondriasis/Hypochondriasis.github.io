@@ -69,8 +69,6 @@
     <div class="text" id="text"></div>
 </div>
 
-<audio id="mySound" src="sound.mp3"></audio>
-
 <script>
     var images = ["image1.jpg", "image2.jpg", "image3.jpg", "cmorik.jpg"];
     var currentImageIdx = 0;
@@ -93,27 +91,6 @@
             document.getElementById('text').textContent = "";
         }
     }
-
-    function playSound() {
-        var sound = document.getElementById("mySound");
-        sound.play();
-    }
-
-    function requestAudioPermission() {
-        navigator.mediaDevices.getUserMedia({ audio: true })
-            .then(function(stream) {
-                console.log('Audio permission granted');
-                setTimeout(playSound, 1000);
-            })
-            .catch(function(error) {
-                console.log('Audio permission denied:', error);
-            });
-    }
-
-    // Request audio permission when the page loads
-    window.onload = function() {
-        requestAudioPermission();
-    };
 </script>
 
 </body>
