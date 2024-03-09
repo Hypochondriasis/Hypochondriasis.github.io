@@ -1,3 +1,4 @@
+</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,18 +12,18 @@
     }
 
     .bg-image {
-        /* The image used */
+     
         background-image: url("image1.jpg");
 
-        /* Full height */
+ 
         height: 100%;
 
-        /* Center and scale the image nicely */
+      
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
 
-        /* Set up the positioning for the arrows */
+      
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -43,7 +44,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         font-size: 48px;
-        color: white;
+        color: black;
         opacity: 0;
         animation: spin-in 1s ease-out 3s forwards;
     }
@@ -65,13 +66,13 @@
 <div class="bg-image" id="bg-image">
     <div class="arrow" onclick="changeImage(-1)">&#10094;</div>
     <div class="arrow" onclick="changeImage(1)">&#10095;</div>
-    <div class="text" id="text">Sup</div>
+    <div class="text" id="text"></div>
 </div>
 
 <audio id="mySound" src="sound.mp3"></audio>
 
 <script>
-    var images = ["image1.jpg", "image2.jpg", "image3.jpg"];
+    var images = ["image1.jpg", "image2.jpg", "image3.jpg", "cmorik.jpg"];
     var currentImageIdx = 0;
 
     function changeImage(direction) {
@@ -84,13 +85,35 @@
         }
 
         document.getElementById('bg-image').style.backgroundImage = "url('" + images[currentImageIdx] + "')";
+
+        // Check if the current image is the last one
+        if (currentImageIdx === images.length - 1) {
+            document.getElementById('text'). textContent = "Dnes som to ja Čo chce odísť Premárnil som veľa času Pobalím handier pár Vo dverách dám ti ešte pusu Aj dážď sám vie Oóó už nestačí Že uschnú tvoje slzy A nás viac niet Láska je preč Tak nech ťa to nemrzí Viac nie Spomínam, na ten deň Keď sme sa Prvý raz stretli Ja som bol premočený Tvoj čierny čaj spojil naše cesty Aj dážď sám vie Oóó už nestačíŽe uschnú tvoje slzy A nás viac nietLáska je preč Tak nech ťa to nemrzí Viac nie";
+        } else {
+            document.getElementById('text').textContent = "";
+        }
     }
 
-    // Play sound after 1 second
-    setTimeout(function() {
+    function playSound() {
         var sound = document.getElementById("mySound");
         sound.play();
-    }, 1000);
+    }
+
+    function requestAudioPermission() {
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(function(stream) {
+                console.log('Audio permission granted');
+                setTimeout(playSound, 1000);
+            })
+            .catch(function(error) {
+                console.log('Audio permission denied:', error);
+            });
+    }
+
+    // Request audio permission when the page loads
+    window.onload = function() {
+        requestAudioPermission();
+    };
 </script>
 
 </body>
